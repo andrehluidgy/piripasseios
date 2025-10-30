@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passeios em Noronha – Piri Passeios</title>
+  <meta name="description" content="Agende passeios exclusivos em Fernando de Noronha com Piri Passeios. Experiências de barco, trilhas e mergulho com conforto e segurança. Contato via WhatsApp.">
+  <meta name="keywords" content="passeios em Noronha, Fernando de Noronha, passeios de barco, mergulho, trilhas, turismo Noronha">
+
+  <link rel="icon" href="logo.png" type="image/png">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    /* ================================== */
+    /* ===== ESTILOS BASE / DESKTOP (> 600px) ===== */
+    /* ================================== */
+
+    html, body {
+        width: 100%;
+        overflow-x: hidden; 
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff7fa;
+    }
+
+    header {
+      text-align: center;
+      padding: 15px;
+      border-bottom: 3px solid #f26ca7;
+      /* Propriedades para Desktop (Padrão: estático) */
+      position: relative; 
+      z-index: 10;
+    }
+
+    header img {
+      height: 90px; 
+      max-width: 90%;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* ====== CARROSSEL 3D ====== */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      margin: 60px auto;
+      perspective: 1200px;
+      height: 500px;
+      overflow: visible; 
+    }
+
+    .carousel {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide {
+      position: absolute;
+      width: 70%;
+      height: 440px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+      transform: none; 
+      opacity: 1; 
+      z-index: 1;
+    }
+
+    .slide.prev { transform: translateX(-60%) scale(0.85) rotateY(15deg); opacity: 0.6; z-index: 1; }
+    .slide.active { transform: translateX(0) scale(1); opacity: 1; z-index: 3; }
+    .slide.next { transform: translateX(60%) scale(0.85) rotateY(-15deg); opacity: 0.6; z-index: 1; }
+
+    .slide img {
+      width: 45%;
+      height: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .info {
+      width: 48%;
+      text-align: left;
+      color: #333;
+    }
+
+    .info h2 {
+      color: #e84a8a;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+
+    .info p {
+      line-height: 1.5;
+      margin: 6px 0;
+      font-size: 0.95em;
+    }
+
+    .btn {
+      background-color: #e84a8a;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 25px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background-color: #d43f7c;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(232, 74, 138, 0.8);
+      border: none;
+      color: white;
+      font-size: 28px;
+      padding: 10px 16px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.3s;
+    }
+
+    .arrow:hover {
+      background-color: rgba(232, 74, 138, 1);
+    }
+
+    .arrow.prev { left: 30px; }
+    .arrow.next { right: 30px; }
+
+    footer {
+      background-color: #fff0f7;
+      border-top: 2px solid #f26ca7;
+      padding: 25px 0;
+      text-align: center;
+      color: #444;
+    }
+
+    footer .social {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 8px;
+    }
+
+    footer img {
+      width: 32px;
+      height: 32px;
+      vertical-align: middle;
+    }
+
+    footer p {
+      font-size: 0.9em;
+      margin: 0;
+    }
+    
+    /* ------------------------------------------------ */
+    /* === BOTAO FIXO DE WHATSAPP (NOVO) - BASE === */
+    /* ------------------------------------------------ */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 25px; 
+      right: 25px; 
+      background-color: #f58bb7; 
+      width: 60px; 
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      z-index: 1000; 
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .whatsapp-btn:hover {
+      background-color: #e84a8a; 
+      transform: scale(1.05);
+    }
+    
+    .whatsapp-btn img {
+        width: 35px; 
+        height: 35px;
+        filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1)); 
+    }
+
+    /* ========================================================================= */
+    /* ===== RESPONSIVIDADE MOBILE (MAX-WIDTH: 600PX) - ALTERAÇÕES EXCLUSIVAS ===== */
+    /* ========================================================================= */
+    @media (max-width: 600px) {
+        
+        /* 1. FIXAÇÃO DO HEADER */
+        header {
+            position: fixed; /* Torna o cabeçalho fixo no topo */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff7fa; /* Garante que o fundo não seja transparente */
+            z-index: 50; /* Z-index alto para ficar acima de todo o conteúdo */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil para destacar */
+        }
+        
+        /* 2. COMPENSAÇÃO DE ESPAÇO NO CORPO */
+        body {
+            /* Adiciona um padding-top igual à altura do header fixo para que o conteúdo 
+               não seja escondido atrás dele. */
+            padding-top: calc(70px + 15px); /* Altura aproximada do header img (70px) + padding vertical (15px) */
+        }
+
+        /* AJUSTES DE ESTRUTURA E ESPAÇAMENTO */
+        main {
+            max-width: 100%;
+            padding: 15px; 
+        }
+        
+        header img {
+            height: 70px;
+        }
+
+        /* Otimização do Carrossel para Layout Vertical */
+        .carousel-container {
+            margin: 30px auto;
+            height: auto; 
+            perspective: none; 
+            overflow: hidden; 
+        }
+
+        .carousel {
+            display: block; 
+        }
+        
+        /* 3. REMOÇÃO DAS SETAS EM MOBILE */
+        .arrow {
+            display: none;
+        }
+
+        /* Otimização do Slide (Item do Passeio) */
+        .slide {
+            position: relative; 
+            width: 100%;
+            height: auto;
+            padding: 15px;
+            margin-bottom: 25px; 
+            flex-direction: column; 
+            
+            transform: none !important; 
+            opacity: 1 !important;
+            z-index: 1 !important;
+        }
+
+        .slide.active:not(:first-child) {
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 230px; 
+            margin-bottom: 15px;
+        }
+        
+        .info {
+            width: 100%;
+        }
+
+        .info h2 {
+            font-size: 1.4em; 
+        }
+
+        .info p {
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        /* Botão de checagem ocupa toda a largura em mobile */
+        .btn {
+            display: block; 
+            text-align: center;
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 8px; 
+        }
+        
+        /* Footer */
+        footer {
+            padding: 20px 15px;
+        }
+        
+        footer .social {
+            gap: 30px; 
+        }
+
+        footer img {
+            width: 38px; 
+            height: 38px;
+        }
+    }
+  </style>
+</head>
+<body>
+
+<a href="https://wa.me/558189533499?text=Olá!%20Tenho%20interesse%20em%20fazer%20um%20passeio%20em%20Fernando%20de%20Noronha%20🌊%20Poderia%20me%20ajudar?" class="whatsapp-btn" target="_blank" aria-label="Fale conosco agora pelo WhatsApp Piri Passeios">
+    <img src="zap.png" alt="Logo do WhatsApp Piri Passeios na cor rosa" loading="lazy">
+</a>
+
+<header>
+  <img src="logo.png" alt="Logo da Piri Passeios, agência de passeios em Noronha">
+</header>
+
+<main>
+  <section class="carousel-container" aria-label="Principais passeios em Fernando de Noronha">
+    <button class="arrow prev" aria-label="Passeio anterior">&#10094;</button>
+
+    <div class="carousel">
+      
+      <article class="slide active">
+        <img src="mylove.jpg" alt="Passeio romântico My Love em Fernando de Noronha">
+        <div class="info">
+          <h2>My Love</h2>
+          <p>Um passeio exclusivo e romântico, ideal para casais ou pequenos grupos que desejam viver momentos únicos admirando o pôr do sol de Noronha.</p>
+          <p><strong>Incluso:</strong> churrasco de peixe, ceviche, pão de alho, salada e frutas.</p>
+          <p><strong>Importante:</strong> bebidas e gelo são de responsabilidade do cliente. Para o plano sub, é necessário levar o próprio equipamento de mergulho (colete e máscara).</p>
+          <a class="btn" href="https://wa.me/558189533499?text=Olá!%20Gostaria%20de%20checar%20a%20disponibilidade%20do%20passeio%20My%20Love%20🌅" target="_blank">Checar disponibilidade</a>
+        </div>
+      </article>
+
+      <article class="slide next">
+        <img src="amostradinha.jpg" alt="Passeio de lancha Amostradinha em Noronha">
+        <div class="info">
+          <h2>Amostradinha</h2>
+          <p>Uma lancha espaçosa e confortável, perfeita para grupos que querem curtir Noronha com estilo e boa comida.</p>
+          <p><strong>Incluso:</strong> churrasco de peixe e picanha, ceviche, pão de alho, salada e frutas.</p>
+          <p><strong>Importante:</strong> bebidas e gelo são de responsabilidade do cliente. Para o plano sub, é necessário levar o próprio equipamento de mergulho (colete e máscara).</p>
+          <a class="btn" href="https://wa.me/558189533499?text=Olá!%20Gostaria%20de%20checar%20a%20disponibilidade%20do%20passeio%20Amostradinha%20🚤" target="_blank">Checar disponibilidade</a>
+        </div>
+      </article>
+
+      <article class="slide prev">
+        <img src="canoa.jpeg" alt="Passeio sustentável de Canoa Havaiana em Fernando de Noronha">
+        <div class="info">
+          <h2>Canoa Havaiana</h2>
+          <p>Uma experiência única e sustentável pelas águas cristalinas de Noronha. Ideal para quem busca contato direto com a natureza e vistas incríveis da ilha.</p>
+          <p><strong>Incluso:</strong> instrutor, colete salva-vidas e garrafa d’água.</p>
+          <p><strong>Importante:</strong> necessário saber nadar e seguir as orientações do guia para segurança.</p>
+          <a class="btn" href="https://wa.me/558189533499?text=Olá!%20Gostaria%20de%20checar%20a%20disponibilidade%20do%20passeio%20Canoa%20Havaiana%20🏝️" target="_blank">Checar disponibilidade</a>
+        </div>
+      </article>
+
+      <article class="slide">
+        <img src="ilhatour.webp" alt="Passeio Ilha Tour em Fernando de Noronha">
+        <div class="info">
+          <h2>Ilha Tour</h2>
+          <p>O passeio mais completo de Noronha! Conheça os principais pontos turísticos da ilha com guia especializado e transporte confortável.</p>
+          <p><strong>Incluso:</strong> transporte com ar-condicionado, guia local e paradas para banho e fotos.</p>
+          <p><strong>Importante:</strong> leve protetor solar, chapéu e água. Duração: Full Day</p>
+          <a class="btn" href="https://wa.me/558189533499?text=Olá!%20Quero%20saber%20mais%20sobre%20o%20Ilha%20Tour%20🌴" target="_blank">Checar disponibilidade</a>
+        </div>
+      </article>
+    </div>
+
+    <button class="arrow next" aria-label="Próximo passeio">&#10095;</button>
+  </section>
+</main>
+
+<footer>
+  <div class="social">
+    <a href="https://www.instagram.com/odetepiriguete/" target="_blank"><img src="insta.png" alt="Instagram Piri Passeios"></a>
+    <a href="https://wa.me/558189533499?text=Olá!%20Tenho%20interesse%20em%20fazer%20um%20passeio%20em%20Fernando%20de%20Noronha%20🌊%20Poderia%20me%20ajudar?" target="_blank"><img src="zap.png" alt="WhatsApp Piri Passeios"></a>
+  </div>
+  <p>Piri Passeios © 2025 — Fernando de Noronha</p>
+</footer>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let index = 0;
+
+  function updateSlides() {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active', 'next', 'prev');
+    });
+
+    const total = slides.length;
+    slides[index].classList.add('active');
+    
+    slides[(index + 1) % total].classList.add('next');
+    slides[(index - 1 + total) % total].classList.add('prev');
+  }
+
+  document.querySelector('.arrow.next').addEventListener('click', () => {
+    index = (index + 1) % slides.length;
+    updateSlides();
+  });
+
+  document.querySelector('.arrow.prev').addEventListener('click', () => {
+    index = (index - 1 + slides.length) % slides.length;
+    updateSlides();
+  });
+
+  updateSlides();
+
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    updateSlides();
+  }, 8000);
+</script>
+
+</body>
+</html>
